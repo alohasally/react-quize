@@ -1,6 +1,6 @@
 import Options from "./Options";
 
-function Question({ questions, dispatch, index }) {
+function Question({ questions, dispatch, index, answer }) {
   const question = questions[index];
   return (
     <div>
@@ -10,6 +10,7 @@ function Question({ questions, dispatch, index }) {
           options={question.options}
           dispatch={dispatch}
           correct={question.correctOption}
+          answer={answer}
         />
       </ul>
     </div>

@@ -32,6 +32,7 @@ export default function reducer(state, action) {
       return {
         ...state,
         index: action.payload,
+        answer: null,
       };
     case "finish":
       return;

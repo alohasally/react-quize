@@ -31,6 +31,7 @@ export default function App() {
     dispatch,
   ] = useReducer(reducer, initialState);
   console.log("questions", questions);
+
   const totalQuestionNumber = questions.length;
 
   useEffect(function () {
