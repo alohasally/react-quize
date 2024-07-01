@@ -1,15 +1,18 @@
-function Options({ options, dispatch }) {
+function Options({ options, dispatch, answer, correct }) {
+  console.log("answer", answer);
+  // const hasAnswer = answer !== null;
   return (
-    <li className="options">
+    <div className="options">
       {options.map((option, index) => (
         <button
-          className="btn btn-option"
+          className={`btn btn-option ${index === answer ? "answer" : ""} `}
+          key={option}
           onClick={() => dispatch({ type: "newAnswer", payload: index })}
         >
           {option}
         </button>
       ))}
-    </li>
+    </div>
   );
 }
 

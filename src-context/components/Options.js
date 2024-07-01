@@ -15,7 +15,7 @@ function Options({ question }) {
                 ? "correct"
                 : "wrong"
               : ""
-          }`}
+          } `}
           key={option}
           disabled={hasAnswered}
           onClick={() => dispatch({ type: "newAnswer", payload: index })}

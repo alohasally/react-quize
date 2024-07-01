@@ -1,5 +1,3 @@
-import React from "react";
-
 const SECS_PER_QUESTION = 30;
 
 export default function reducer(state, action) {
@@ -21,9 +19,14 @@ export default function reducer(state, action) {
         status: "active",
       };
     case "newAnswer":
+      const question = state.questions.at(state.index);
       return {
         ...state,
         answer: action.payload,
+        points:
+          action.payload === question.correctOption
+            ? state.point + question.point
+            : state.point,
       };
     case "nextQuestion":
       return {

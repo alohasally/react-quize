@@ -66,7 +66,12 @@ export default function App() {
         {status === "active" && (
           <>
             <Progress />
-            <Question questions={questions} dispatch={dispatch} index={index} />
+            <Question
+              questions={questions}
+              dispatch={dispatch}
+              index={index}
+              answer={answer}
+            />
             <Footer>
               <Timer secondsRemaining={secondsRemaining} dispatch={dispatch} />
               <NextButton dispatch={dispatch} index={index} />
