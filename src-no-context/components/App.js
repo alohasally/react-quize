@@ -13,8 +13,6 @@ import Footer from "./Footer";
 import Timer from "./Timer";
 import reducer from "./Reducer";
 
-const SECS_PER_QUESTION = 30;
-
 const initialState = {
   questions: [],
 
@@ -33,12 +31,6 @@ export default function App() {
     dispatch,
   ] = useReducer(reducer, initialState);
 
-  const numQuestions = questions.length;
-  const maxPossiblePoints = questions.reduce(
-    (prev, cur) => prev + cur.points,
-    0
-  );
-
   useEffect(function () {
     //  fetch("http://localhost:9000/questions")
     //   .then((res) => res.json())
@@ -48,10 +40,32 @@ export default function App() {
       async function fetchQuestion() {
         const res = await fetch("http://localhost:9000/questions");
         const data = await res.json();
+        dispatch({ type: "dataReceived", payload: data });
       }
-    } catch (error) {}
+    } catch (error) {
+      dispatch({ type: "dataFailed" });
+    }
     fetchQuestion();
   }, []);
 
-  return <div className="app"></div>;
+  return (
+    <div className="app">
+      <Header />
+      <Main>
+        {status === "error" && <Error />}
+        {status === "ready" && <StartScreen />}
+        {status === "active" && (
+          <>
+            <Progress />
+            <Question />
+            <Footer>
+              <Timer />
+              <NextButton />
+            </Footer>
+          </>
+        )}
+        {status === "finished" && <FinishScreen />}
+      </Main>
+    </div>
+  );
 }

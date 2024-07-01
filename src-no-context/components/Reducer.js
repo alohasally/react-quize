@@ -1,61 +1,25 @@
 import React from "react";
 
+const SECS_PER_QUESTION = 30;
+
 export default function reducer(state, action) {
   switch (action.type) {
     case "dataReceived":
-      return {
-        ...state,
-        questions: action.payload,
-        status: "ready",
-      };
+      return;
     case "dataFailed":
-      return {
-        ...state,
-        status: "error",
-      };
+      return;
     case "start":
-      return {
-        ...state,
-        status: "active",
-        secondsRemaining: state.questions.length * SECS_PER_QUESTION,
-      };
+      return;
     case "newAnswer":
-      const question = state.questions.at(state.index);
-
-      return {
-        ...state,
-        answer: action.payload,
-        points:
-          action.payload === question.correctOption
-            ? state.points + question.points
-            : state.points,
-      };
+      return;
     case "nextQuestion":
-      return { ...state, index: state.index + 1, answer: null };
+      return;
     case "finish":
-      return {
-        ...state,
-        status: "finished",
-        highscore:
-          state.points > state.highscore ? state.points : state.highscore,
-      };
+      return;
     case "restart":
-      return { ...initialState, questions: state.questions, status: "ready" };
-    // return {
-    //   ...state,
-    //   points: 0,
-    //   highscore: 0,
-    //   index: 0,
-    //   answer: null,
-    //   status: "ready",
-    // };
-
+      return;
     case "tick":
-      return {
-        ...state,
-        secondsRemaining: state.secondsRemaining - 1,
-        status: state.secondsRemaining === 0 ? "finished" : state.status,
-      };
+      return;
 
     default:
       throw new Error("Action unkonwn");
