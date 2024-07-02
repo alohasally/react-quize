@@ -4,7 +4,7 @@ function Question({ questions, dispatch, index, answer }) {
   const question = questions[index];
   return (
     <div>
-      <h2>{question.question}</h2>
+      <h4>{question.question}</h4>
       <ul>
         <Options
           options={question.options}

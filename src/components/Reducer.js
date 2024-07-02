@@ -25,8 +25,15 @@ export default function reducer(state, action) {
         answer: action.payload,
         points:
           action.payload === question.correctOption
-            ? state.point + question.point
-            : state.point,
+            ? state.points + question.points
+            : state.points,
+      };
+    case "previousQuestion":
+      return {
+        ...state,
+        index: action.payload,
+        answer: state.answer,
+        status: state.index === 0 ? "ready" : "active",
       };
     case "nextQuestion":
       return {
@@ -35,13 +42,17 @@ export default function reducer(state, action) {
         answer: null,
       };
     case "finish":
-      return;
+      return {
+        ...state,
+        status: "finished",
+      };
     case "restart":
       return;
     case "tick":
       return {
         ...state,
         secondsRemaining: state.secondsRemaining - 1,
+        status: state.secondsRemaining <= 0 ? "finised" : "active",
       };
 
     default:

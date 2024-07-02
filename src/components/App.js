@@ -12,6 +12,7 @@ import FinishScreen from "./FinishScreen";
 import Footer from "./Footer";
 import Timer from "./Timer";
 import reducer from "./Reducer";
+import PreviousButton from "./PreviousButton";
 
 const initialState = {
   questions: [],
@@ -33,6 +34,7 @@ export default function App() {
   console.log("questions", questions);
 
   const totalQuestionNumber = questions.length;
+  const totalPoints = questions.reduce((acc, cur) => acc + cur.points, 0);
 
   useEffect(function () {
     //  fetch("http://localhost:9000/questions")
@@ -66,17 +68,31 @@ export default function App() {
         )}
         {status === "active" && (
           <>
-            <Progress />
+            <Progress
+              totalQuestionNumber={totalQuestionNumber}
+              index={index}
+              points={points}
+              answer={answer}
+              totalPoints={totalPoints}
+            />
             <Question
               questions={questions}
               dispatch={dispatch}
               index={index}
               answer={answer}
             />
-            <Footer>
+            <div className="footer">
+              <div className="btn-div">
+                <PreviousButton dispatch={dispatch} index={index} />
+                <NextButton
+                  dispatch={dispatch}
+                  index={index}
+                  answer={answer}
+                  totalQuestionNumber={totalQuestionNumber}
+                />
+              </div>
               <Timer secondsRemaining={secondsRemaining} dispatch={dispatch} />
-              <NextButton dispatch={dispatch} index={index} />
-            </Footer>
+            </div>
           </>
         )}
         {status === "finished" && <FinishScreen />}

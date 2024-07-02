@@ -7,10 +7,10 @@ function Options({ options, dispatch, answer, correct }) {
           className={`btn btn-option ${index === answer ? "answer" : ""} ${
             hasAnswer ? (index === correct ? "correct" : "wrong") : ""
           } `}
+          disabled={hasAnswer}
           key={option}
           onClick={() => dispatch({ type: "newAnswer", payload: index })}
         >
-          {index}
           {option}
         </button>
       ))}

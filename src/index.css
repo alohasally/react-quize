@@ -38,6 +38,7 @@ body {
 
 .main {
   width: 50rem;
+  height: auto;
 }
 
 .app-header {
@@ -144,6 +145,11 @@ progress {
   float: right;
 }
 
+.btn-div {
+  display: flex;
+  justify-content: space-between;
+}
+
 .options {
   display: flex;
   flex-direction: column;
@@ -206,6 +212,7 @@ progress {
 
 .timer {
   float: left;
+  width: 120px;
   font-size: 1.8rem;
   color: var(--color-medium);
   border: 2px solid var(--color-dark);
@@ -256,4 +263,13 @@ progress {
 .counter * {
   font-size: inherit;
   padding: 0.8rem;
+}
+
+.footer {
+  width: auto;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: normal;
+  justify-content: space-around;
 }
