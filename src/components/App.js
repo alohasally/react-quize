@@ -95,7 +95,13 @@ export default function App() {
             </div>
           </>
         )}
-        {status === "finished" && <FinishScreen />}
+        {status === "finished" && (
+          <FinishScreen
+            totalPoints={totalPoints}
+            points={points}
+            highscore={highscore}
+          />
+        )}
       </Main>
     </div>
   );
