@@ -1,4 +1,7 @@
-function PreviousButton({ index, dispatch }) {
+import { useQuiz } from "../contexts/QuizContext";
+
+function PreviousButton() {
+  const { index, dispatch } = useQuiz();
   return (
     <button
       className="btn"
